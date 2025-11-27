@@ -5,4 +5,4 @@ class Order:
         self.total = self.calculate_total()
 
     def calculate_total(self):
-        return sum(i.get_subtotal() for i in self.items)
+        return sum(item.get_subtotal() for item in self.items)
