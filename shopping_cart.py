@@ -12,4 +12,3 @@ class ShoppingCart:
 
     def get_total(self):
         return sum(item.get_subtotal() for item in self.items)
-
