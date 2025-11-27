@@ -1,3 +1,5 @@
+from cart_item import CartItem
+
 class ShoppingCart:
     def __init__(self):
         self.items = []
