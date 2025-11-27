@@ -1,48 +1,56 @@
-@startuml
-class Product {
-  - id: int
-  - name: string
-  - price: float
-  + getInfo(): string
-}
+## UML Class Diagram (Mermaid)
 
-class Customer {
-  - id: int
-  - name: string
-  - email: string
-  + addToCart(product: Product, qty: int)
-  + placeOrder(): Order
-}
+```mermaid
+classDiagram
+    class Product {
+        +id
+        +name
+        +price
+        +get_info()
+    }
 
-class ShoppingCart {
-  - items: List<CartItem>
-  + addItem(product: Product, qty: int)
-  + removeItem(product: Product)
-  + getTotal(): float
-}
+    class CartItem {
+        +product
+        +quantity
+        +get_subtotal()
+    }
 
-class CartItem {
-  - product: Product
-  - quantity: int
-  + getSubtotal(): float
-}
+    class ShoppingCart {
+        +items
+        +add_item()
+        +remove_item()
+        +get_total()
+    }
 
-class Order {
-  - id: int
-  - items: List<CartItem>
-  - total: float
-  + calculateTotal(): float
-}
+    class Order {
+        +id
+        +items
+        +total
+        +calculate_total()
+    }
 
-class Payment {
-  - orderId: int
-  - amount: float
-  + pay(): bool
-}
+    class PaymentMethod {
+        <<interface>>
+        +pay(amount)
+    }
 
-Customer --> ShoppingCart
-ShoppingCart --> CartItem
-CartItem --> Product
-Customer --> Order
-Order --> Payment
-@enduml
+    class DefaultPayment {
+        +pay(amount)
+    }
+
+    class Customer {
+        +id
+        +name
+        +email
+        +cart
+        +add_to_cart()
+        +place_order()
+    }
+
+    Customer --> ShoppingCart
+    ShoppingCart --> CartItem
+    CartItem --> Product
+    Customer --> Order
+    Order --> CartItem
+    Customer --> PaymentMethod : uses
+    PaymentMethod <|.. DefaultPayment
