@@ -3,29 +3,29 @@
 ```mermaid
 classDiagram
     class Product {
-        +id
-        +name
-        +price
+        -id
+        -name
+        -price
         +get_info()
     }
 
     class CartItem {
-        +product
-        +quantity
+        -product
+        -quantity
         +get_subtotal()
     }
 
     class ShoppingCart {
-        +items
+        -items
         +add_item()
         +remove_item()
         +get_total()
     }
 
     class Order {
-        +id
-        +items
-        +total
+        -id
+        -items
+        -total
         +calculate_total()
     }
 
@@ -39,10 +39,10 @@ classDiagram
     }
 
     class Customer {
-        +id
-        +name
-        +email
-        +cart
+        -id
+        -name
+        -email
+        -cart
         +add_to_cart()
         +place_order()
     }
